@@ -33,7 +33,7 @@ public class PhrasesActivity extends AppCompatActivity {
         words.add(new Word("Let’s go.", "yoowutis"));
         words.add(new Word("Come here.", "әnni'nem"));
 
-        WordAdapter wds = new WordAdapter(this,words);
+        WordAdapter wds = new WordAdapter(this,words,"#16AFCA");
         //i am now attaching the wordAdapter to the main adapterView  that will get its profits to me
         ListView fd = (ListView)findViewById(R.id.id2);
         fd.setAdapter(wds);

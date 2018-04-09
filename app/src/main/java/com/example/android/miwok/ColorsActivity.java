@@ -34,7 +34,7 @@ public class ColorsActivity extends AppCompatActivity {
 
 
 
-        WordAdapter wds = new WordAdapter(this,words);
+        WordAdapter wds = new WordAdapter(this,words,"#8800A0");
         //i am now attaching the wordAdapter to the main adapterView  that will get its profits to me
         ListView fd = (ListView)findViewById(R.id.id2);
         fd.setAdapter(wds);

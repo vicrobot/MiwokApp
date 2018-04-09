@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         // specific text view by its id.
         TextView txt1 = (TextView)findViewById(R.id.numbers);
         TextView txt2 = (TextView)findViewById(R.id.family);
-        TextView txt3 = (TextView)findViewById(R.id.phrases);
-        TextView txt4 = (TextView)findViewById(R.id.colors);
+        TextView txt3 = (TextView)findViewById(R.id.colors);
+        TextView txt4 = (TextView)findViewById(R.id.phrases);
 
         txt1.setOnClickListener(new View.OnClickListener() {
             @Override

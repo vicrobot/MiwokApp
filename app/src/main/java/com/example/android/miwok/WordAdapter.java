@@ -8,15 +8,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.graphics.Color.parseColor;
+import static java.lang.Integer.parseInt;
+
 public class WordAdapter extends ArrayAdapter<Word> {
 
-   public WordAdapter(Context ctx, ArrayList<Word> ark){
+    private String color;
+
+   public WordAdapter(Context ctx, ArrayList<Word> ark,String hex){
        super(ctx,0,ark);
+       color=hex;
+
    }
    @Override
     public View getView(int position,View nameOfTheView, ViewGroup vrg ){
@@ -52,6 +60,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
        if(wrd.hasImage()) {
            ImageView img = (ImageView) nameOfTheView.findViewById(R.id.asfs);
            img.setImageResource(wrd.getImageResouse());
+           img.setBackgroundColor(parseColor("#fff7da"));
        }else{
            ImageView img = (ImageView) nameOfTheView.findViewById(R.id.asfs);
            img.setVisibility(View.GONE);
@@ -60,6 +69,9 @@ public class WordAdapter extends ArrayAdapter<Word> {
        //since i have already set the image for the needed one thus setting  the rest views
        tx.setText(wrd.getFirstText());
        txt.setText(wrd.getSecondText());
+       LinearLayout ll = (LinearLayout)nameOfTheView.findViewById(R.id.color);
+       ll.setBackgroundColor(parseColor(color));
+
 
 
        return nameOfTheView;

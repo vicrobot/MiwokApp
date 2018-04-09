@@ -33,7 +33,7 @@ public class FamilyActivity extends AppCompatActivity {
         words.add(new Word("grandmother ", "ama",R.drawable.family_grandmother));
         words.add(new Word("grandfather", "paapa",R.drawable.family_grandfather));
 
-        WordAdapter wds = new WordAdapter(this,words);
+        WordAdapter wds = new WordAdapter(this,words,"#379237");
         //i am now attaching the wordAdapter to the main adapterView  that will get its profits to me
         ListView fd = (ListView)findViewById(R.id.id2);
         fd.setAdapter(wds);

@@ -33,7 +33,7 @@ public class NumbersActivity extends AppCompatActivity {
         item.add(new Word("nine", "wo’e",R.drawable.number_nine));
         item.add(new Word("ten", "na’aacha",R.drawable.number_ten));
 
-        WordAdapter wds = new WordAdapter(this,item);
+        WordAdapter wds = new WordAdapter(this,item,"#FD8E09");
         //i am now attaching the wordAdapter to the main adapterView  that will get its profits to me
         ListView fd = (ListView)findViewById(R.id.id2);
         fd.setAdapter(wds);
