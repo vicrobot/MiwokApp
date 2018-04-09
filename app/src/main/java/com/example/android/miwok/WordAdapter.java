@@ -35,24 +35,31 @@ public class WordAdapter extends ArrayAdapter<Word> {
            nameOfTheView=lf.inflate(R.layout.model,vrg,false);
        }
 
-       //now to access the childViews of the inflated layout to populate the values
+      //Find the comments and detail in the first commit of the app
+       //initializing the text view and  then pointing them
+       //I haven't did it for image because i have to make it go through conditional codes
        TextView tx =  (TextView)nameOfTheView.findViewById(R.id.asdf);
        TextView txt =  (TextView)nameOfTheView.findViewById(R.id.asfd);
-       ImageView img = (ImageView)nameOfTheView.findViewById(R.id.asfs);
 
-       //getting access to the public fields of Word class
-      //  tx.setText(wrd.mVar1);
-      // txt.setText(wrd.mVar2);
-      // img.setImageResource(wrd.mVar3);
-       //but we can't let anyone access the fields directly thus we will assign getters on the word
-       //class and then will access the resources by those methods.
 
+       //I have made a method hasImage() which checks whether the class word's object have taken the
+       //values for image or not and thus returns the boolean value for it indicating
+       // that the particular object has imageView or not.
+       //And thus if the image is available; do the general view declaration and initialisation
+       //and pointing it.
+       //And if the image Is not available then making the default image of the layout "model"
+       // to be GONE by that method listed below.
+       if(wrd.hasImage()) {
+           ImageView img = (ImageView) nameOfTheView.findViewById(R.id.asfs);
+           img.setImageResource(wrd.getImageResouse());
+       }else{
+           ImageView img = (ImageView) nameOfTheView.findViewById(R.id.asfs);
+           img.setVisibility(View.GONE);
+       }
+
+       //since i have already set the image for the needed one thus setting  the rest views
        tx.setText(wrd.getFirstText());
        txt.setText(wrd.getFirstText());
-       img.setImageResource(wrd.getImageResouse());
-
-
-
 
 
        return nameOfTheView;

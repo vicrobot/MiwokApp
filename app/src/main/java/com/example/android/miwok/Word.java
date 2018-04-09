@@ -25,4 +25,12 @@ public class Word {
     public int getImageResouse(){
         return mVar3;
     }
+
+    public boolean hasImage(){
+        boolean x = true;
+        if (mVar3 ==0) {
+            x=false;
+        }
+        return x;
+    }
 }
