@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--This is a model XML file-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:a="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_marginLeft="5dp"
+    android:backgroundTint="#12c3cc">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/asfs"
+        android:layout_margin="5dp"
+        android:src="@drawable/img2"
+
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/asdf"
+            android:layout_margin="2dp"
+            android:layout_marginLeft="3dp"
+            android:fontFamily="Sans-serif-monospace"
+            android:textSize="20sp"
+            android:textColor="#12c3cc"
+            android:text="text1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/asfd"
+            android:layout_margin="2dp"
+            android:textColor="#4A312A"
+            android:layout_marginLeft="3dp"
+            android:textSize="20sp"
+            android:fontFamily="Sans-serif-monospace"
+            android:text="text2"/>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
