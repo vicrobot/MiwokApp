@@ -4,7 +4,8 @@ public class Word {
 
     private String mVar1;
     private String mVar2;
-    private int mVar3;
+    private int mVar3 = NO_IMAGE;
+    private static final int NO_IMAGE = -1;
 
     public Word(String var1,String var2,int var3){
         mVar1 = var1;
@@ -28,7 +29,7 @@ public class Word {
 
     public boolean hasImage(){
         boolean x = true;
-        if (mVar3 ==0) {
+        if (mVar3 ==NO_IMAGE) {
             x=false;
         }
         return x;

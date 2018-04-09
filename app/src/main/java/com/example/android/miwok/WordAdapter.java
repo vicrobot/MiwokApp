@@ -59,7 +59,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
        //since i have already set the image for the needed one thus setting  the rest views
        tx.setText(wrd.getFirstText());
-       txt.setText(wrd.getFirstText());
+       txt.setText(wrd.getSecondText());
 
 
        return nameOfTheView;
