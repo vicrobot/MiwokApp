@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,14 @@ public class PhrasesActivity extends AppCompatActivity {
 
                 Word cc = words.get(i);
                 mp = MediaPlayer.create(PhrasesActivity.this, cc.getAudioResourse());
+
+                //setting OnCompletionListener on the mediaPlayer
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        Toast.makeText(PhrasesActivity.this,"Hello",Toast.LENGTH_SHORT).show();
+                    }
+                });
                 mp.start();
             }
         });
