@@ -2,8 +2,11 @@
 package com.example.android.miwok;
 
 // imported files or classes or interfaces or such things...
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -13,7 +16,7 @@ import java.util.ArrayList;
 
 // class defining..
 public class PhrasesActivity extends AppCompatActivity {
-
+    MediaPlayer mp;
     // now overriding essential methods(here onCreate)...
     @Override
     protected void onCreate(Bundle var) {
@@ -21,7 +24,7 @@ public class PhrasesActivity extends AppCompatActivity {
         setContentView(R.layout.main);
 
         // now making the text view with the help of java
-        ArrayList<Word> words = new ArrayList<Word>();
+        final ArrayList<Word> words = new ArrayList<Word>();
         words.add(new Word("Where are you going?", "minto wuksus",R.raw.phrase_where_are_you_going));
         words.add(new Word("What is your name?", "tinnә oyaase'nә",R.raw.phrase_what_is_your_name));
         words.add(new Word("My name is...", "oyaaset...",R.raw.phrase_my_name_is));
@@ -37,6 +40,16 @@ public class PhrasesActivity extends AppCompatActivity {
         //i am now attaching the wordAdapter to the main adapterView  that will get its profits to me
         ListView fd = (ListView)findViewById(R.id.id2);
         fd.setAdapter(wds);
+        fd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //getting the word object by the position argument that each view is taking with
+
+                Word cc = words.get(i);
+                mp = MediaPlayer.create(PhrasesActivity.this, cc.getAudioResourse());
+                mp.start();
+            }
+        });
 
     }
 }

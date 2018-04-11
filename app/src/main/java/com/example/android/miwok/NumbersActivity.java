@@ -2,8 +2,11 @@
 package com.example.android.miwok;
 
 // imported files or classes or interfaces or such things...
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -13,7 +16,7 @@ import java.util.ArrayList;
 
 // class defining..
 public class NumbersActivity extends AppCompatActivity {
-
+    MediaPlayer mp;
     // now overriding essential methods(here onCreate)...
     @Override
     protected void onCreate(Bundle var) {
@@ -21,7 +24,7 @@ public class NumbersActivity extends AppCompatActivity {
         setContentView(R.layout.main);
 
         // now making the text view with the help of java
-        ArrayList<Word> item = new ArrayList<>();
+        final ArrayList<Word> item = new ArrayList<>();
         item.add(new Word("one", "lutti", R.drawable.number_one,R.raw.number_one));
         item.add(new Word("two", "otiiko",R.drawable.number_two,R.raw.number_two));
         item.add(new Word("three", "tolookosu",R.drawable.number_three,R.raw.number_three));
@@ -37,7 +40,16 @@ public class NumbersActivity extends AppCompatActivity {
         //i am now attaching the wordAdapter to the main adapterView  that will get its profits to me
         ListView fd = (ListView)findViewById(R.id.id2);
         fd.setAdapter(wds);
+        fd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //getting the word object by the position argument that each view is taking with
 
+                Word cc = item.get(i);
+                mp = MediaPlayer.create(NumbersActivity.this, cc.getAudioResourse());
+                mp.start();
+            }
+        });
         }
     }
 

@@ -72,14 +72,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
        txt.setText(wrd.getSecondText());
        LinearLayout ll = (LinearLayout)nameOfTheView.findViewById(R.id.color);
        ll.setBackgroundColor(parseColor(color));
-        nameOfTheView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mp = MediaPlayer.create(getContext(),wrd.getAudioResourse());
-                mp.start();
-            }
-        });
-
 
        return nameOfTheView;
    }

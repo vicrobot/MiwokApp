@@ -27,7 +27,7 @@
             android:layout_marginTop="10dp"
             android:paddingBottom="2dp"
             android:fontFamily="Sans-serif-monospace"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textColor="#ffffff"
             android:text="text1"/>
         <TextView
@@ -35,12 +35,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/asfd"
             android:textColor="#ffffff"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:paddingTop="2dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="Sans-serif-monospace"
             android:text="text2"/>
     </LinearLayout>
+    
 
 
 
