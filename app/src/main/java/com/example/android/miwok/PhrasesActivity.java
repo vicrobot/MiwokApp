@@ -54,6 +54,9 @@ public class PhrasesActivity extends AppCompatActivity {
                     @Override
                     public void onCompletion(MediaPlayer mediaPlayer) {
                         Toast.makeText(PhrasesActivity.this,"Hello",Toast.LENGTH_SHORT).show();
+
+                        //releasing the MediaPlayer object after its completion.
+                        releaseMediaPlayer();
                     }
                 });
                 mp.start();
@@ -61,5 +64,19 @@ public class PhrasesActivity extends AppCompatActivity {
         });
 
     }
+
+    //To make everything clear from the MediaPlayer object we use release and null instantiation
+    //for it.
+    public void releaseMediaPlayer(){
+
+        //check if something is present or associated with the MediaPlayer object and release it.
+        if(mp!=null){
+            mp.release();
+        }
+
+        //even if the code skipped the if condition we have to initialize the object
+        mp = null;
+    }
+
 }
 
