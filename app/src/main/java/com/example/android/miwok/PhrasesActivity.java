@@ -18,6 +18,19 @@ import java.util.ArrayList;
 // class defining..
 public class PhrasesActivity extends AppCompatActivity {
     MediaPlayer mp;
+
+    //Creating a global variable for MediaPlayer.OnCompletionListener so that
+    //we don't have to create it's object on every clicks.
+
+    private MediaPlayer.OnCompletionListener mpocl = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            Toast.makeText(PhrasesActivity.this,"Hello",Toast.LENGTH_SHORT).show();
+
+            //releasing the MediaPlayer object after its completion
+            releaseMediaPlayer();
+        }
+    };
     // now overriding essential methods(here onCreate)...
     @Override
     protected void onCreate(Bundle var) {
@@ -50,15 +63,9 @@ public class PhrasesActivity extends AppCompatActivity {
                 mp = MediaPlayer.create(PhrasesActivity.this, cc.getAudioResourse());
 
                 //setting OnCompletionListener on the mediaPlayer
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        Toast.makeText(PhrasesActivity.this,"Hello",Toast.LENGTH_SHORT).show();
-
-                        //releasing the MediaPlayer object after its completion.
-                        releaseMediaPlayer();
-                    }
-                });
+                //the object of MediaPlayer.OnCompletionListener is  globally initiated for memory
+                //efficiency.
+                mp.setOnCompletionListener(mpocl);
                 mp.start();
             }
         });
@@ -70,6 +77,7 @@ public class PhrasesActivity extends AppCompatActivity {
     public void releaseMediaPlayer(){
 
         //check if something is present or associated with the MediaPlayer object and release it.
+        //because we no longer want it.
         if(mp!=null){
             mp.release();
         }
