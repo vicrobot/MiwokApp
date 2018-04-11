@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
@@ -18,7 +19,7 @@ import static android.graphics.Color.parseColor;
 import static java.lang.Integer.parseInt;
 
 public class WordAdapter extends ArrayAdapter<Word> {
-
+    MediaPlayer mp;
     private String color;
 
    public WordAdapter(Context ctx, ArrayList<Word> ark,String hex){
@@ -34,7 +35,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
        //Asking for the item(i.e the object of word class that we gave in ArrayList
        //Now as we get it; we will access its field of text andthus will set it as i did
        // at the last.
-        Word wrd = getItem(position);
+        final Word wrd = getItem(position);
        //firstly checking that the view is inflated or not
        if(nameOfTheView==null){
            LayoutInflater lf = LayoutInflater.from(getContext());
@@ -71,7 +72,13 @@ public class WordAdapter extends ArrayAdapter<Word> {
        txt.setText(wrd.getSecondText());
        LinearLayout ll = (LinearLayout)nameOfTheView.findViewById(R.id.color);
        ll.setBackgroundColor(parseColor(color));
-
+        nameOfTheView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mp = MediaPlayer.create(getContext(),wrd.getAudioResourse());
+                mp.start();
+            }
+        });
 
 
        return nameOfTheView;
