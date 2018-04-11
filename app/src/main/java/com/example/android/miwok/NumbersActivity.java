@@ -5,6 +5,7 @@ package com.example.android.miwok;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,6 +49,7 @@ public class NumbersActivity extends AppCompatActivity {
                 Word cc = item.get(i);
                 mp = MediaPlayer.create(NumbersActivity.this, cc.getAudioResourse());
                 mp.start();
+                Log.e("NumbersActivity", "Current word: " + cc.toString());
             }
         });
         }

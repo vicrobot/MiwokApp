@@ -38,4 +38,14 @@ public class Word {
         }
         return x;
     }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "mVar1='" + mVar1 + '\'' +
+                ", mVar2='" + mVar2 + '\'' +
+                ", mVar3=" + mVar3 +
+                ", mVar4=" + mVar4 +
+                '}';
+    }
 }
