@@ -57,8 +57,10 @@ public class PhrasesActivity extends AppCompatActivity {
         fd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //getting the word object by the position argument that each view is taking with
 
+                //released the mediaPlayer object before other's implementation
+                releaseMediaPlayer();
+                //getting the word object by the position argument that each view is taking with
                 Word cc = words.get(i);
                 mp = MediaPlayer.create(PhrasesActivity.this, cc.getAudioResourse());
 

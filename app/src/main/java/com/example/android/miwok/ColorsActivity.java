@@ -11,12 +11,25 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 // class defining..
 public class ColorsActivity extends AppCompatActivity {
     MediaPlayer mp;
+    //Creating a global variable for MediaPlayer.OnCompletionListener so that
+    //we don't have to create it's object on every clicks.
+
+    private MediaPlayer.OnCompletionListener mpocl = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            Toast.makeText(ColorsActivity.this,"Hello",Toast.LENGTH_SHORT).show();
+
+            //releasing the MediaPlayer object after its completion
+            releaseMediaPlayer();
+        }
+    };
     // now overriding essential methods(here onCreate)...
     @Override
     protected void onCreate(Bundle var) {
@@ -44,14 +57,28 @@ public class ColorsActivity extends AppCompatActivity {
         fd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                releaseMediaPlayer();
                 //getting the word object by the position argument that each view is taking with
 
                 Word cc = words.get(i);
                 mp = MediaPlayer.create(ColorsActivity.this, cc.getAudioResourse());
                 mp.start();
+                mp.setOnCompletionListener(mpocl);
             }
         });
 
+    }
+    public void releaseMediaPlayer() {
+
+        //check if something is present or associated with the MediaPlayer object and release it.
+        //because we no longer want it.
+        if (mp != null) {
+            mp.release();
+        }
+
+        //even if the code skipped the if condition we have to initialize the object
+        mp = null;
     }
 }
 
