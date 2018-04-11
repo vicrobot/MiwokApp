@@ -5,6 +5,7 @@ package com.example.android.miwok;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -79,6 +80,25 @@ public class FamilyActivity extends AppCompatActivity {
 
         //even if the code skipped the if condition we have to initialize the object
         mp = null;
+    }
+    @Override
+    protected void onStop() {
+
+        //releasing the media player object and setting it to null because we no longer need it.
+        //You can implement the below method before or after the super call; it is same.
+        releaseMediaPlayer();
+        Log.v("Activity state: ","Stopped.");
+        super.onStop();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
     }
 }
 
