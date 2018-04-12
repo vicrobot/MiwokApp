@@ -6,13 +6,19 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Toolbar;
+
 import java.util.ArrayList;
+import java.util.Objects;
+
 import static android.media.AudioManager.AUDIOFOCUS_GAIN;
 import static android.media.AudioManager.AUDIOFOCUS_GAIN_TRANSIENT;
 import static android.media.AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE;
@@ -51,6 +57,19 @@ public class NumbersActivity extends AppCompatActivity {
     protected void onCreate(Bundle var) {
         super.onCreate(var);
         setContentView(R.layout.main);
+
+        //adding the navigation arrow on the top of the activity
+        //this is the first method to add the navigation arrow.
+        //The colors activity, the phrases activity and the familyMembersActivity's manifest has
+        // the second method to add it.
+        //For second method you just have to add the meta-data with its fields in manifest's activity.
+        //<activity android:name=".ColorsActivity"
+        //            android:label="@string/category_colors">
+        //                <meta-data
+        //                        android:name="android.support.PARENT_ACTIVITY"
+        //                        android:value=".MainActivity"/>
+        //        </activity>
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // now making the text view with the help of java
         final ArrayList<Word> words = new ArrayList<>();
