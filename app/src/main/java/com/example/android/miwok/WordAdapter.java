@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -73,6 +74,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
        txt.setText(wrd.getSecondText());
        LinearLayout ll = (LinearLayout)nameOfTheView.findViewById(R.id.color);
        ll.setBackgroundColor(parseColor(color));
+
 
 
        return nameOfTheView;
