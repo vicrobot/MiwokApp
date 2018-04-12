@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -72,6 +73,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
        txt.setText(wrd.getSecondText());
        LinearLayout ll = (LinearLayout)nameOfTheView.findViewById(R.id.color);
        ll.setBackgroundColor(parseColor(color));
+
 
        return nameOfTheView;
    }

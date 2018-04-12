@@ -41,8 +41,8 @@ public class PhrasesActivity extends AppCompatActivity {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
             Toast.makeText(PhrasesActivity.this,"I'm Done",Toast.LENGTH_SHORT).show();
-            //releasing the MediaPlayer object after its completion
-            releaseMediaPlayer();
+            //abandoning the MediaPlayer object after its completion
+            mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     };
 
@@ -63,8 +63,6 @@ public class PhrasesActivity extends AppCompatActivity {
         words.add(new Word("Let’s go.", "yoowutis",R.raw.phrase_lets_go));
         words.add(new Word("Come here.", "әnni'nem",R.raw.phrase_come_here));
 
-        //Initialising the word adapter with context, arrayList, and giving the color code
-        // for its background
         WordAdapter wds = new WordAdapter(this,words,"#16AFCA");
         //i am now attaching the wordAdapter to the main adapterView  that will get its profits to me
         ListView fd = (ListView)findViewById(R.id.id2);
@@ -79,6 +77,8 @@ public class PhrasesActivity extends AppCompatActivity {
         fd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //releasing the MediaPlayer instance before playing audio
+                releaseMediaPlayer();
 
                 //As the item is clicked now thus we have to proceed firstly asking or requesting for
                 //audioFocus from the android. For that we will use requestAudioFocus() method of the
@@ -141,7 +141,7 @@ public class PhrasesActivity extends AppCompatActivity {
         }
         //even if the code skipped the if condition we have to initialize the object
         mp = null;
-        mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
+
 
     }
 
