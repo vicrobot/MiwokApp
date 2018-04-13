@@ -66,9 +66,7 @@ public class MainActivity extends AppCompatActivity {
         ColorStateList csl = tl.getTabTextColors();
 
         Log.e("TabColors",csl.toString());
-
-
-
+        
 
     }
 
