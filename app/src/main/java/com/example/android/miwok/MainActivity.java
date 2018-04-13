@@ -15,61 +15,26 @@
  */
 package com.example.android.miwok;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Set the content of the activity to use the activity_main.xml layout file
+        //setting the layout for the MainActivity
         setContentView(R.layout.activity_main);
-        // now we have to manually and javacally make the text views clickable
-        // so we will do this by scientifically thinking on what to do.
-        //firstly we will have to set an onClick listener interface on the
-        // specific text view by its id.
-        TextView txt1 = (TextView)findViewById(R.id.numbers);
-        TextView txt2 = (TextView)findViewById(R.id.family);
-        TextView txt3 = (TextView)findViewById(R.id.colors);
-        TextView txt4 = (TextView)findViewById(R.id.phrases);
 
-        txt1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,NumbersActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
-        txt2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,FamilyActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        txt3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ColorsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        txt4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,PhrasesActivity.class);
-                startActivity(intent);
-            }
-        });
+        //Setting the ViewPager with the android.support.v4.view.ViewPager view
+        ViewPager vp = (ViewPager)findViewById(R.id.viewP);
+        //Declaring and initialising the SampleFragmentPagerAdapter and
+        //giving it the argument as getSupportFragmentManager() which will get the FragmentManager
+        //to manage the fragments associated with the adapter and that have to show to this Activity.
+        SampleFragmentPagerAdapter sp = new SampleFragmentPagerAdapter( getSupportFragmentManager());
+        //setting the adapter with the ViewPager
+        vp.setAdapter(sp);
 
     }
 

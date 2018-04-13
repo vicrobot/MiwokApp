@@ -1,4 +1,4 @@
-// package name...
+/*// package name...
 package com.example.android.miwok;
 
 // imported files or classes or interfaces or such things...
@@ -6,18 +6,14 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import static android.media.AudioManager.AUDIOFOCUS_GAIN;
 import static android.media.AudioManager.AUDIOFOCUS_GAIN_TRANSIENT;
@@ -187,5 +183,6 @@ public class NumbersActivity extends AppCompatActivity {
         super.onResume();
     }
 
-}
 
+}
+*/

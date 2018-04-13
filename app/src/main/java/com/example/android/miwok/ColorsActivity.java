@@ -1,4 +1,4 @@
-// package name...
+/*// package name...
 package com.example.android.miwok;
 
 // imported files or classes or interfaces or such things...
@@ -172,3 +172,4 @@ public class ColorsActivity extends AppCompatActivity {
 
 }
 
+*/

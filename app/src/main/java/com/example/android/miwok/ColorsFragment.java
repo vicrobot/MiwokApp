@@ -1,14 +1,41 @@
-/*// package name...
+/**
+ * I have deleted the ColorsActivity and made ColorsFragment.
+ * For comparision i have those java files and content has
+ * converted to comments for making them effect-less.
+ * For converting an activity to fragment you can use  Fragment Transaction if
+ * you want to use that Activity file to associate that fragment
+ *     getSupportFragmentManager().beginTransaction()
+ *     .replace(R.id.container, new ColorsFragment())
+ *     .commit();
+ * By adding this statement where the R.id.container id the id of the parent View and
+ * The name of the fragment  file; you can begin transaction of fragment.
+ * But here i converted those Activity files to Fragment files which will be associate with
+ * the MainActivity by the ViewPager and the FragmentPagerAdapter.
+ * We will make a customFragmentPagerAdapter for our specific
+ * output.
+ * The MainActivity will associate these fragments with the FragmentPagerAdapter and when the
+ * ViewPager will ask the custom-Adapter for the View to show; the custom-adapter will
+ * ask the corresponding Fragment by its getItem() method to give a View by inflating the
+ * main.xml or the layout that will become its content.
+ * As for this version i have noticed that the Fragment get pause when its adjacent to adjacent
+ * Fragment come to screen.
+ * This version contains some bugs that will be fixed in future versions.
+ * ViewPage~ListView
+ * SampleFragmentPagerAdapter~WordAdapter
+ * FragmentPagerAdapter~ArrayAdapter
+ * getItem()~getView()
+ */
 package com.example.android.miwok;
 
-// imported files or classes or interfaces or such things...
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,9 +49,8 @@ import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
 import static android.media.AudioManager.AUDIOFOCUS_REQUEST_GRANTED;
 import static android.media.AudioManager.STREAM_MUSIC;
 
+public class ColorsFragment extends Fragment {
 
-// class defining..
-public class PhrasesActivity extends AppCompatActivity {
     //Declaring MediaPlayer instance
     MediaPlayer mp;
     //Declaring the AudioManager Object
@@ -40,36 +66,43 @@ public class PhrasesActivity extends AppCompatActivity {
         //Overriding its onCompletion method
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            Toast.makeText(PhrasesActivity.this,"I'm Done",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"I'm Done",Toast.LENGTH_SHORT).show();
             //abandoning the MediaPlayer object after its completion
             mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     };
 
-    // now overriding essential methods(here onCreate)...
-    @Override
-    protected void onCreate(Bundle var) {
-        super.onCreate(var);
-        setContentView(R.layout.main);
-        final ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word("Where are you going?", "minto wuksus",R.raw.phrase_where_are_you_going));
-        words.add(new Word("What is your name?", "tinnә oyaase'nә",R.raw.phrase_what_is_your_name));
-        words.add(new Word("My name is...", "oyaaset...",R.raw.phrase_my_name_is));
-        words.add(new Word("How are you feeling?", "michәksәs?",R.raw.phrase_how_are_you_feeling));
-        words.add(new Word("I’m feeling good.", "kuchi achit",R.raw.phrase_im_feeling_good));
-        words.add(new Word("Are you coming?", "әәnәs'aa?",R.raw.phrase_are_you_coming));
-        words.add(new Word("Yes, I’m coming.", "hәә’ әәnәm",R.raw.phrase_yes_im_coming));
-        words.add(new Word("I’m coming.", "әәnәm",R.raw.phrase_im_coming));
-        words.add(new Word("Let’s go.", "yoowutis",R.raw.phrase_lets_go));
-        words.add(new Word("Come here.", "әnni'nem",R.raw.phrase_come_here));
+    public ColorsFragment() {
+        // Required empty public constructor
+    }
 
-        WordAdapter wds = new WordAdapter(this,words,"#16AFCA");
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.main, container, false);
+
+        // now making the text view with the help of java
+        final ArrayList<Word> words = new ArrayList<Word>();
+        words.add(new Word("red", "weṭeṭṭi",R.drawable.color_red,R.raw.color_red));
+        words.add(new Word("mustard yellow", "chiwiiṭә",R.drawable.color_mustard_yellow,R.raw.color_mustard_yellow));
+        words.add(new Word("dusty yellow", "ṭopiisә",R.drawable.color_dusty_yellow,R.raw.color_dusty_yellow));
+        words.add(new Word("green", "chokokki",R.drawable.color_green,R.raw.color_green));
+        words.add(new Word("brown", "ṭakaakki",R.drawable.color_brown,R.raw.color_brown));
+        words.add(new Word("gray", "ṭopoppi",R.drawable.color_gray,R.raw.color_gray));
+        words.add(new Word("black", "kululli",R.drawable.color_black,R.raw.color_black));
+        words.add(new Word("white", "kelelli",R.drawable.color_white,R.raw.color_white));
+
+        //Initialising the word adapter with context, arrayList, and giving the color code
+        // for its background
+        WordAdapter wds = new WordAdapter(getActivity(),words,"#8800A0");
+
         //i am now attaching the wordAdapter to the main adapterView  that will get its profits to me
-        ListView fd = (ListView)findViewById(R.id.id2);
+        ListView fd = (ListView)rootView.findViewById(R.id.id2);
         fd.setAdapter(wds);
+
         //initializing the AudioManager class's object by giving it the context and the data of what
         //we need.
-        mAudioManager = (AudioManager)PhrasesActivity.this.getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager = (AudioManager)getContext().getSystemService(Context.AUDIO_SERVICE);
 
         //setting onItemClickListener on ListView
         //It takes the argument of the adapterView.ONItemClickListener with its onItemClick method
@@ -96,7 +129,7 @@ public class PhrasesActivity extends AppCompatActivity {
                     Word cc = words.get(i);
 
                     //giving context and source to the MediaPlayer object
-                    mp = MediaPlayer.create(PhrasesActivity.this, cc.getAudioResourse());
+                    mp = MediaPlayer.create(getContext(), cc.getAudioResourse());
                     mp.start();
                     //Setting OnCompletion method
                     mp.setOnCompletionListener(mpocl);
@@ -115,22 +148,22 @@ public class PhrasesActivity extends AppCompatActivity {
             @Override
             public void onAudioFocusChange(int i) {
                 if(i==AUDIOFOCUS_LOSS_TRANSIENT||i==AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
-                    mp.pause();
-                    //setting it to start because our pronunciation is already very small
-                    mp.seekTo(0);
+                    if(mp!=null){
+                        mp.pause();
+                    }
                 }
                 else if(i==AUDIOFOCUS_LOSS){
                     releaseMediaPlayer();
                 }
-                if(i==AUDIOFOCUS_GAIN_TRANSIENT||i==AUDIOFOCUS_GAIN){
+                else if(i==AUDIOFOCUS_GAIN_TRANSIENT||i==AUDIOFOCUS_GAIN){
                     mp.seekTo(0);
                     mp.start();
                 }
             }
         };
+        return rootView;
 
     }
-
     //Defining the releaseMediaPlayer() method which deals properly with the release of the
     //mp.release() method.
     public void releaseMediaPlayer() {
@@ -147,22 +180,30 @@ public class PhrasesActivity extends AppCompatActivity {
 
     //Overriding the activity state changing methods
     @Override
-    protected void onStop() {
+    public void onStop() {
         //releasing the media player object and setting it to null because we no longer need it.
         //You can implement the below method before or after the super call; it is same.
         releaseMediaPlayer();
-        Log.v("Activity state: ","Stopped.");
+        Log.v("ColorsFragment ","Stopped.");
         super.onStop();
+        mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
     }
     @Override
-    protected void onResume(){
+    public void onResume(){
         super.onResume();
     }
-
+    @Override
+    public void onPause(){
+        Log.v("ColorsFragment ","Paused.");
+        if(mp!=null){
+            mp.pause();}
+            releaseMediaPlayer();
+        super.onPause();
+        mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
+    }
 }
-*/
