@@ -24,7 +24,7 @@
  * SampleFragmentPagerAdapter~WordAdapter
  * FragmentPagerAdapter~ArrayAdapter
  * getItem()~getView()
- */
+z */
 package com.example.android.miwok;
 
 import android.content.Context;

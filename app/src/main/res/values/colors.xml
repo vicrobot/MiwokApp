@@ -34,4 +34,13 @@
 
     <!-- Background color for the phrases category -->
     <color name="category_phrases">#16AFCA</color>
+
+    <!-- Background color for the TabLayout Text -->
+    <color name="TextTab">#A8A19E</color>
+
+    <!-- Background color for the TabLayout BarLine i.e SelectedTabIndicator -->
+    <color name="BarLine">#ffffff</color>
+
+    <!-- Background color for the TabLayout Selected Page -->
+    <color name="SelectedPage">#ffffff</color>
 </resources>

@@ -104,9 +104,10 @@ public class ColorsFragment extends Fragment {
         //we need.
         mAudioManager = (AudioManager)getContext().getSystemService(Context.AUDIO_SERVICE);
 
-        //setting onItemClickListener on ListView
-        //It takes the argument of the adapterView.ONItemClickListener with its onItemClick method
-        //overriden which has arguments of position of listView items, their optional id,
+
+        /**Setting onItemClickListener on ListView
+          It takes the argument of the adapterView.ONItemClickListener with its onItemClick method
+          overriden which has arguments of position of listView items, their optional id,*/
         fd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
