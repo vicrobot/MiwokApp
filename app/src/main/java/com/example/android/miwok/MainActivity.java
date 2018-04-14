@@ -63,15 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         tl.setSelectedTabIndicatorHeight(10);
 
-        ColorStateList csl = tl.getTabTextColors();
-
-        Log.e("TabColors",csl.toString());
-        
-
-    }
-
-
-
+        }
     }
 
 

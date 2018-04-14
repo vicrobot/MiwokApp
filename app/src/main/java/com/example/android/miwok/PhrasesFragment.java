@@ -69,7 +69,6 @@ public class PhrasesFragment extends Fragment {
         //Overriding its onCompletion method
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            Toast.makeText(getContext(),"I'm Done",Toast.LENGTH_SHORT).show();
             //abandoning the MediaPlayer object after its completion
             mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }

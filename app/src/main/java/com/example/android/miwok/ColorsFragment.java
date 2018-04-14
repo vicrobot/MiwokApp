@@ -4,9 +4,9 @@
  * converted to comments for making them effect-less.
  * For converting an activity to fragment you can use  Fragment Transaction if
  * you want to use that Activity file to associate that fragment
- *     getSupportFragmentManager().beginTransaction()
- *     .replace(R.id.container, new ColorsFragment())
- *     .commit();
+ * getSupportFragmentManager().beginTransaction()
+ * .replace(R.id.container, new ColorsFragment())
+ * .commit();
  * By adding this statement where the R.id.container id the id of the parent View and
  * The name of the fragment  file; you can begin transaction of fragment.
  * But here i converted those Activity files to Fragment files which will be associate with
@@ -39,7 +39,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
+
 import static android.media.AudioManager.AUDIOFOCUS_GAIN;
 import static android.media.AudioManager.AUDIOFOCUS_GAIN_TRANSIENT;
 import static android.media.AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE;
@@ -66,7 +68,6 @@ public class ColorsFragment extends Fragment {
         //Overriding its onCompletion method
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            Toast.makeText(getContext(),"I'm Done",Toast.LENGTH_SHORT).show();
             //abandoning the MediaPlayer object after its completion
             mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
@@ -83,31 +84,31 @@ public class ColorsFragment extends Fragment {
 
         // now making the text view with the help of java
         final ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word("red", "weṭeṭṭi",R.drawable.color_red,R.raw.color_red));
-        words.add(new Word("mustard yellow", "chiwiiṭә",R.drawable.color_mustard_yellow,R.raw.color_mustard_yellow));
-        words.add(new Word("dusty yellow", "ṭopiisә",R.drawable.color_dusty_yellow,R.raw.color_dusty_yellow));
-        words.add(new Word("green", "chokokki",R.drawable.color_green,R.raw.color_green));
-        words.add(new Word("brown", "ṭakaakki",R.drawable.color_brown,R.raw.color_brown));
-        words.add(new Word("gray", "ṭopoppi",R.drawable.color_gray,R.raw.color_gray));
-        words.add(new Word("black", "kululli",R.drawable.color_black,R.raw.color_black));
-        words.add(new Word("white", "kelelli",R.drawable.color_white,R.raw.color_white));
+        words.add(new Word("red", "weṭeṭṭi", R.drawable.color_red, R.raw.color_red));
+        words.add(new Word("mustard yellow", "chiwiiṭә", R.drawable.color_mustard_yellow, R.raw.color_mustard_yellow));
+        words.add(new Word("dusty yellow", "ṭopiisә", R.drawable.color_dusty_yellow, R.raw.color_dusty_yellow));
+        words.add(new Word("green", "chokokki", R.drawable.color_green, R.raw.color_green));
+        words.add(new Word("brown", "ṭakaakki", R.drawable.color_brown, R.raw.color_brown));
+        words.add(new Word("gray", "ṭopoppi", R.drawable.color_gray, R.raw.color_gray));
+        words.add(new Word("black", "kululli", R.drawable.color_black, R.raw.color_black));
+        words.add(new Word("white", "kelelli", R.drawable.color_white, R.raw.color_white));
 
         //Initialising the word adapter with context, arrayList, and giving the color code
         // for its background
-        WordAdapter wds = new WordAdapter(getActivity(),words,"#8800A0");
+        WordAdapter wds = new WordAdapter(getActivity(), words, "#8800A0");
 
         //i am now attaching the wordAdapter to the main adapterView  that will get its profits to me
-        ListView fd = (ListView)rootView.findViewById(R.id.id2);
+        ListView fd = (ListView) rootView.findViewById(R.id.id2);
         fd.setAdapter(wds);
 
         //initializing the AudioManager class's object by giving it the context and the data of what
         //we need.
-        mAudioManager = (AudioManager)getContext().getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
 
 
         /**Setting onItemClickListener on ListView
-          It takes the argument of the adapterView.ONItemClickListener with its onItemClick method
-          overriden which has arguments of position of listView items, their optional id,*/
+         It takes the argument of the adapterView.ONItemClickListener with its onItemClick method
+         overriden which has arguments of position of listView items, their optional id,*/
         fd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -121,8 +122,8 @@ public class ColorsFragment extends Fragment {
                 //the duration of AudioFocus you want for your audio.Now the requestAudioFocus method
                 // will give the value of int type showing that whether our permission is granted or
                 //denied by android.
-                int var1 = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,STREAM_MUSIC,AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
-                if(var1==AUDIOFOCUS_REQUEST_GRANTED){
+                int var1 = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, STREAM_MUSIC, AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
+                if (var1 == AUDIOFOCUS_REQUEST_GRANTED) {
                     //we got the permission to play our audio
                     //Starting our usual practice to start playback
 
@@ -145,18 +146,16 @@ public class ColorsFragment extends Fragment {
         //all the cases of it(not all but all necessary and what we need.
         // Setting the listener to listen every case of the change in audioFocus and then
         //respond with that
-        mOnAudioFocusChangeListener= new AudioManager.OnAudioFocusChangeListener() {
+        mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
             @Override
             public void onAudioFocusChange(int i) {
-                if(i==AUDIOFOCUS_LOSS_TRANSIENT||i==AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
-                    if(mp!=null){
+                if (i == AUDIOFOCUS_LOSS_TRANSIENT || i == AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                    if (mp != null) {
                         mp.pause();
                     }
-                }
-                else if(i==AUDIOFOCUS_LOSS){
+                } else if (i == AUDIOFOCUS_LOSS) {
                     releaseMediaPlayer();
-                }
-                else if(i==AUDIOFOCUS_GAIN_TRANSIENT||i==AUDIOFOCUS_GAIN){
+                } else if (i == AUDIOFOCUS_GAIN_TRANSIENT || i == AUDIOFOCUS_GAIN) {
                     mp.seekTo(0);
                     mp.start();
                 }
@@ -165,6 +164,7 @@ public class ColorsFragment extends Fragment {
         return rootView;
 
     }
+
     //Defining the releaseMediaPlayer() method which deals properly with the release of the
     //mp.release() method.
     public void releaseMediaPlayer() {
@@ -185,7 +185,7 @@ public class ColorsFragment extends Fragment {
         //releasing the media player object and setting it to null because we no longer need it.
         //You can implement the below method before or after the super call; it is same.
         releaseMediaPlayer();
-        Log.v("ColorsFragment ","Stopped.");
+        Log.v("ColorsFragment ", "Stopped.");
         super.onStop();
         mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
     }
@@ -194,16 +194,19 @@ public class ColorsFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
     }
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
     }
+
     @Override
-    public void onPause(){
-        Log.v("ColorsFragment ","Paused.");
-        if(mp!=null){
-            mp.pause();}
-            releaseMediaPlayer();
+    public void onPause() {
+        Log.v("ColorsFragment ", "Paused.");
+        if (mp != null) {
+            mp.pause();
+        }
+        releaseMediaPlayer();
         super.onPause();
         mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
     }
